@@ -1,2 +1,32 @@
-<h2>Welcome to Pizza Shop!</h2>
-<button class="btn btn-primary" onclick="something()">Click me</button>
+<html>
+<head>
+  <title>Pizza Shop</title>
+</head>
+<body>
+  <!-- <h2>Welcome to Pizza Shop!</h2>
+  <button class="btn btn-primary" onclick="something()">Click me</button>
+-->
+  <div class="container-fluid">
+    <h1>Наши пиццы</h1>
+    <div class="row">
+      <% @products.each do |product| %>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="<%= product[:path_to_image] %>" class="card-img-top img-responsive" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= product[:title] %></h5>
+            <p class="card-text"><%= product[:description] %></p>
+            <p class="card-text"><%= product[:price] %> р.</p>
+            <a href="#" class="btn btn-primary">Добавить в корзину</a>
+            <a href="#" class="btn btn-primary">Подробнее</a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
