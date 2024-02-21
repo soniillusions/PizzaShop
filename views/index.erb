@@ -6,12 +6,30 @@
   <!-- <h2>Welcome to Pizza Shop!</h2>
   <button class="btn btn-primary" onclick="something()">Click me</button>
 -->
-  <div class="container-fluid">
-    <h1>Наши пиццы</h1>
+  <div class="container">
+    <h1>Welcome to Pizza Shop!</h1>
     <div class="row">
       <% @products.each do |product| %>
-        <div class="col-md-3">
-          <%= product[:title] %>
+        <div class="col-md-4">
+          <div>
+            <%= product.title %>
+          </div>
+
+          <div>
+            <img src="<%= product.path_to_image %>" class="img-responsive" width="300" height="300" />
+          </div>
+
+          <div>
+            <%= product.description %>
+          </div>
+
+          <div>
+            Size: <%= product.size %> cm
+          </div>
+
+          <div>
+            Price: <%= product.price %> rub
+          </div>
         </div>
       <% end %>
     </div>
