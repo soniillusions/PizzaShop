@@ -25,3 +25,7 @@ end
 get '/contacts' do
 	erb :contacts
 end
+
+post '/cart' do
+	erb 'Hello'
+end
