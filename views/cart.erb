@@ -3,17 +3,37 @@
         <title>Pizza Shop - Cart</title>
     </head>
     <body>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Price</th>
+          </tr>
+          </thead>
+          <tbody>
+            <% @products.each_with_index do |product, i| %>
+                <tr>
+                    <th scope="row"><%= i + 1 %></th>
+                    <td><%= product['title'] %></td>
+                    <td id="cart_value_<%= i %>"></td>
+                    <td><%= product['price'] * cart_display_value(i) %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-        <h2>Список продуктов</h2>
+        <!-- Ваши скрипты перед закрывающим тегом </body> -->
+        <script type="text/javascript">
+            $(function() {
+                <% @products.each_with_index do |product, i| %>
+                cart_display_value(<%= i %>);
+                <% end %>
+            });
 
-        <div id="productList"></div>
 
-          <!-- Ваши скрипты перед закрывающим тегом </body> -->
-        <script>
-            // Вызываем функцию для отображения списка продуктов
-            cart_display_orders(cart_get_orders());
         </script>
-
     </body>
 </html>
 

@@ -13,6 +13,12 @@ before do
 	@products = Product.all
 end
 
+def cart_display_value(index)
+	key = "product_#{index}"
+	value = (params[key] || '0').to_i
+	value
+end
+
 get '/' do
 	@products = Product.all
 	erb :index

@@ -53,7 +53,7 @@ function update_orders_button()
 }
 function cart_get_orders()
 {
-    var orders = {};
+    var orders = '';
 
     for(var i = 0; i < window.localStorage.length; i++)
     {
@@ -62,28 +62,20 @@ function cart_get_orders()
 
         if(key.indexOf('product_') == 0)
         {
-            orders[key] = value;
+            orders += key + '=' + value + ',';
         }
     }
 
     return orders;
 }
 
-function cart_display_orders(orders)
+function cart_display_value(index)
 {
-    var amount = productListDiv = document.getElementById('productList');
-    var productListHTML = '<ul>';
+    var key = window.localStorage.key(index);
+    var value = window.localStorage.getItem(key);
 
-   for(var key in orders) {
-       if (orders.hasOwnProperty(key)); {
-           var product = key.replace('product_', '');
-           var quantity = parseInt(orders[key]);
-
-           productListHTML += '<li>' + product + ': ' + quantity + '</li>';
-       }
-   }
-
-   productListHTML += '</ul>';
-   productListDiv.innerHTML = productListHTML;
+    if(key && key.indexOf('product_') == 0)
+    {
+        $('#cart_value_' + index).text(value);
+    }
 }
-
