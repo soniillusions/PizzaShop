@@ -18,13 +18,42 @@
                     <th scope="row"><%= i + 1 %></th>
                     <td><%= product['title'] %></td>
                     <td id="cart_value_<%= i %>"></td>
-                    <td><%= product['price'] * cart_display_value(i) %></td>
+                    <td><%= product['price'] %></td>
                 </tr>
             <% end %>
           </tbody>
         </table>
 
-        <!-- Ваши скрипты перед закрывающим тегом </body> -->
+        <form action="/cart" method="POST">
+          <div class="row g-3 align-items-center">
+            <div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <label for="inputPassword6" class="col-form-label">Name</label>
+                <input type="text" name="name" id="name" class="form-control" aria-describedby="passwordHelpInline">
+              </div>
+
+              <div class="col-auto">
+                <label for="inputPassword6" class="col-form-label">Phone</label>
+                <input type="text" name="phone" id="phone" class="form-control" aria-describedby="passwordHelpInline">
+              </div>
+
+              <div class="col-auto">
+                <label for="inputPassword6" class="col-form-label">Address</label>
+                <input type="text" name="address" id="address" class="form-control" aria-describedby="passwordHelpInline">
+              </div>
+
+              <div>
+                <input type="hidden" name="order_data" id="order_data">
+              </div>
+
+              <br />
+              <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Send order</button>
+              </div>
+            </div>
+        </form>
+
+            <!-- Ваши скрипты перед закрывающим тегом </body> -->
         <script type="text/javascript">
             $(function() {
                 <% @products.each_with_index do |product, i| %>
@@ -32,6 +61,13 @@
                 <% end %>
             });
 
+              document.addEventListener('DOMContentLoaded', function() {
+                // Вызываем ваш JS-метод и получаем результат
+                var ordersData = cart_get_orders();
+
+                // Устанавливаем значение скрытого поля
+                document.getElementById('order_data').value = ordersData;
+            });
 
         </script>
     </body>

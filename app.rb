@@ -9,14 +9,12 @@ set :database, {adapter: "sqlite3", database: "pizzashop.db"}
 class Product < ActiveRecord::Base
 end
 
-before do
-	@products = Product.all
+class Order < ActiveRecord::Base
 end
 
-def cart_display_value(index)
-	key = "product_#{index}"
-	value = (params[key] || '0').to_i
-	value
+before do
+	@products = Product.all
+	@orders = Order.all
 end
 
 get '/' do
@@ -32,6 +30,24 @@ get '/contacts' do
 	erb :contacts
 end
 
-post '/cart' do
+get '/cart' do
 	erb :cart
 end
+
+post '/cart' do
+	@user_name = params[:name]
+	@user_phone = params[:phone]
+	@user_address = params[:address]
+	@user_order = params[:order_data]
+
+	order = Order.new(name: @user_name, phone: @user_phone, address: @user_address, order_data: @user_order)
+
+	if order.save
+		puts 'Your order is in process.'
+	else
+		puts 'Failed to save order.'
+	end
+
+	redirect '/cart'
+end
+
