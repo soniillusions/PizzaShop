@@ -35,19 +35,39 @@ get '/cart' do
 end
 
 post '/cart' do
-	@user_name = params[:name]
-	@user_phone = params[:phone]
-	@user_address = params[:address]
-	@user_order = params[:order_data]
+	orders_input = params[:orders]
 
-	order = Order.new(name: @user_name, phone: @user_phone, address: @user_address, order_data: @user_order)
+	@orders = parse_orders_line(orders_input)
 
-	if order.save
-		puts 'Your order is in process.'
-	else
-		puts 'Failed to save order.'
-	end
+	erb "Hello #{@orders.inspect}"
 
-	redirect '/cart'
+	#order = Order.new()
+
+	#if order.save
+	#puts 'Your order is in process.'
+	#else
+	#puts 'Failed to save order.'
+	#end
+
+	#redirect '/cart'
 end
 
+def parse_orders_line orders_input
+	s1 = orders_input.split(',')
+
+	arr =[]
+
+	s1.each do |product|
+		s2 = product.split('=')
+
+		s3 = s2[0].split('_')
+
+		id = s3[1]
+		amount = s2[1]
+
+		arr2 = [id, amount]
+		arr << arr2
+	end
+
+	return arr
+end
