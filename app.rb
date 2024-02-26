@@ -36,20 +36,13 @@ end
 
 post '/cart' do
 	orders_input = params[:orders]
+	@items = parse_orders_line(orders_input)
 
-	@orders = parse_orders_line(orders_input)
+	@items.each do |item|
+		item[0] = @products.find(item[0])
+	end
 
-	erb "Hello #{@orders.inspect}"
-
-	#order = Order.new()
-
-	#if order.save
-	#puts 'Your order is in process.'
-	#else
-	#puts 'Failed to save order.'
-	#end
-
-	#redirect '/cart'
+	erb :cart
 end
 
 def parse_orders_line orders_input
