@@ -35,8 +35,8 @@ get '/cart' do
 end
 
 post '/cart' do
-	orders_input = params[:orders]
-	@items = parse_orders_line(orders_input)
+	@orders_input = params[:orders]
+	@items = parse_orders_line(@orders_input)
 
 	@items.each do |item|
 		item[0] = @products.find(item[0])
