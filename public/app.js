@@ -79,3 +79,9 @@ function cart_display_value(index)
         $('#cart_value_' + index).text(value);
     }
 }
+
+function clear_order()
+{
+    localStorage.clear();
+}
+
