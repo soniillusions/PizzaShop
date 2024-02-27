@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Orders - Pizza Shop</title>
+</head>
+<body>
+
+  <% @orders.each do |order| %>
+    <div>
+      <%= order[:id] %>
+    </div>
+    <div>
+      - <%= orders_input_to_hash(order[:order_input]) %>
+    </div>
+    <div>
+      - <%= order[:name] %>
+    </div>
+    <div>
+      - <%= order[:phone] %>
+    </div>
+    <div>
+      - <%= order[:address] %>
+    </div>
+    <br />
+    <br />
+  <% end %>
+</body>
+</html>

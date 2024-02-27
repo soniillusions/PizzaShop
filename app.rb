@@ -45,6 +45,22 @@ post '/cart' do
 	erb :cart
 end
 
+post '/place_order' do
+	@order = Order.new(params[:order])
+
+	if @order.save
+		erb 'Successful!'
+	else
+		@error = @order.errors.full_messages.first
+		erb :cart
+	end
+end
+
+get '/orders' do
+	@orders = Order.order('created_at DESC')
+	erb :orders
+end
+
 def parse_orders_line orders_input
 	s1 = orders_input.split(',')
 
@@ -63,4 +79,22 @@ def parse_orders_line orders_input
 	end
 
 	return arr
+end
+
+def orders_input_to_hash(order)
+	orders_hash = {
+		'1' => 'Hawaiian',
+		'2' => 'Pepperoni',
+		'3' => 'Vegetarian'
+	}
+
+	string = ''
+
+	order_arr =	parse_orders_line(order)
+
+	order_arr.each do |product|
+		string += orders_hash[product[0]] + ' - ' + product[1] + ', '
+	end
+
+	return string
 end
