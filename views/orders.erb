@@ -6,22 +6,27 @@
 
   <% @orders.each do |order| %>
     <div>
-      <%= order[:id] %>
+      Time: <%= order[:created_at] %>
     </div>
     <div>
-      - <%= orders_input_to_hash(order[:order_input]) %>
+      Order: <%= orders_input_to_hash(order[:order_input]) %>
     </div>
     <div>
-      - <%= order[:name] %>
+      Name: <%= order[:name] %>
     </div>
     <div>
-      - <%= order[:phone] %>
+      Phone: <%= order[:phone] %>
     </div>
     <div>
-      - <%= order[:address] %>
+      Address: <%= order[:address] %>
     </div>
+
+  <form action="/orders/<%= order[:id] %>/delete" method="POST">
+    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+  </form>
     <br />
     <br />
   <% end %>
+
 </body>
 </html>

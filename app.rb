@@ -61,6 +61,12 @@ get '/orders' do
 	erb :orders
 end
 
+post '/orders/:id/delete' do
+	order = Order.find(params[:id])
+	order.destroy
+	redirect '/orders'
+end
+
 def parse_orders_line orders_input
 	s1 = orders_input.split(',')
 

@@ -14,13 +14,13 @@ function add_to_cart(id)
     var key = 'product_' + id
 
     var x = window.localStorage.getItem(key);
+
     x = x * 1 + 1;
     window.localStorage.setItem(key, x);
 
     update_orders_input();
     update_orders_button();
 
-    alert('Items in your cart: ' + cart_get_number_of_items());
 }
 
 function cart_get_number_of_items()
@@ -85,3 +85,7 @@ function clear_order()
     localStorage.clear();
 }
 
+function update_product_amount()
+{
+
+}
