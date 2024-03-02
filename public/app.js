@@ -83,5 +83,13 @@ function cart_display_value(index)
 
 function clear_order()
 {
-    localStorage.clear();
+    window.localStorage.clear();
+
+    update_orders_input();
+    update_orders_button();
+
+    $('#cart').text('Your cart is now empty');
+
 }
+
+
