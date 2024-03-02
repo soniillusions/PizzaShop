@@ -9,6 +9,7 @@ function something()
     alert(x);
 }
 
+
 function add_to_cart(id)
 {
     var key = 'product_' + id
@@ -83,9 +84,4 @@ function cart_display_value(index)
 function clear_order()
 {
     localStorage.clear();
-}
-
-function update_product_amount()
-{
-
 }
