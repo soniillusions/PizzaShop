@@ -1,5 +1,7 @@
 # Sinatra Application
 
+PizzaShop app where you can place your order
+
 ## Installation
 
 Ensure you have Ruby installed. Then, install the required gems:
