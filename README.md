@@ -1,6 +1,10 @@
 # Sinatra Application
 
-PizzaShop app where you can place your order
+PizzaShop app with the ability to place an order.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1f679ac1-15c5-462b-8b3a-362ff1e6362a">
+</p>
 
 ## Installation
 
@@ -19,9 +23,3 @@ ruby app.rb
 ```
 
 By default, the application will be available at `http://localhost:4567`.
-
-
-sinatra-bootstrap-clean
-=======================
-
-Cleaned version of https://github.com/bootstrap-ruby/sinatra-bootstrap
